@@ -130,11 +130,28 @@ void QtGuiSignalSlot_1::initUI(void)
 	font.setPointSize(20);//修改字体大小
 	txtEdit->setFont(font);//设置字体
 
+	//slider 和 spinbox
+	slider = new QSlider;
+	spinBox = new QSpinBox;
+	spinBox->setRange(0, 100);
+	slider->setRange(0, 100);
+	slider->setTickInterval(5);
+	slider->setTickPosition(QSlider::TicksAbove);
+	slider->setOrientation(Qt::Horizontal);	//水平方向
+
+	QHBoxLayout *HLaySlider = new QHBoxLayout;
+	HLaySlider->addWidget(spinBox);
+	HLaySlider->addStretch();
+	HLaySlider->addWidget(slider);
+	
+
+
 	//创建垂直布局，并设置为主布局
 	QVBoxLayout *VLay = new QVBoxLayout;
 	VLay->addLayout(HLayout);
 	VLay->addLayout(HLayout2);
 	VLay->addWidget(txtEdit);
+	VLay->addLayout(HLaySlider);
 	VLay->addLayout(HLay3);
 	setLayout(VLay);
 }
@@ -157,4 +174,7 @@ void QtGuiSignalSlot_1::initSignalSlots(void)
 	connect(btnOK, SIGNAL(clicked()), this, SLOT(accept()));
 	connect(btnCancel, SIGNAL(clicked()), this, SLOT(reject()));
 	connect(btnClose, SIGNAL(clicked()), this, SLOT(close()));
+
+	connect(spinBox, SIGNAL(valueChanged(int)), slider, SLOT(setValue(int)));
+	connect(slider, SIGNAL(valueChanged(int)), spinBox, SLOT(setValue(int)));
 }

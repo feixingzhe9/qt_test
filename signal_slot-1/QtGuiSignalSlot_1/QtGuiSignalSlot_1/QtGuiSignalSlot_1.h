@@ -7,6 +7,8 @@
 #include <qradiobutton.h>
 #include <qpushbutton.h>
 #include <qplaintextedit.h>
+#include <qspinbox.h>
+#include <qslider.h>
 
 class QtGuiSignalSlot_1 : public QDialog
 {
@@ -27,6 +29,10 @@ private:
 	QPushButton *btnOK;
 	QPushButton *btnCancel;
 	QPushButton *btnClose;
+
+	QSpinBox *spinBox;
+	QSlider *slider;
+
 
 	void initUI(void);
 	void initSignalSlots(void);
