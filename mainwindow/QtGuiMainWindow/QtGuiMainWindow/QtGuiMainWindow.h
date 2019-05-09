@@ -10,6 +10,7 @@
 #include <qslider.h>
 #include <qlcdnumber.h>
 #include <qtimer.h>
+#include <qboxlayout.h>
 
 class QtGuiMainWindow : public QMainWindow
 {
@@ -19,6 +20,7 @@ private:
 	Ui::QtGuiMainWindowClass ui;
 	QWidget *widget;
 
+	//菜单栏相关
 	QMenuBar *mb;
 	QMenu *file_menu;
 	//QMenu *file_menu_1;
@@ -32,6 +34,13 @@ private:
 
 	QMenu *help_menu;
 	QAction *about_action;
+
+	//工具栏相关
+	QToolBar *toolbar;
+	QActionGroup *tool_group;
+	QList<QAction*> toolbar_list;
+	QAction *tool_1;
+	QAction *tool_2;
 
 	QCheckBox *chkBoxUnder;
 	QCheckBox *chkBoxItalic;
@@ -53,8 +62,12 @@ private:
 	QSlider *slider;
 
 
+	//layout
+	QVBoxLayout *main_layout;
+
 	void initUI(void);
 	void initMenuBar(void);
+	void initToolBar(void);
 	void initSignalSlots(void);
 	//void setTextFontColor(void);
 
@@ -72,6 +85,7 @@ private slots:
 
 	void slot_action_new_1(void);
 	void slot_action_multi_1(void);
+	void slot_toolbutton_1_open(void);
 	
 	signals:
 	void send_click_under_cnt(int);

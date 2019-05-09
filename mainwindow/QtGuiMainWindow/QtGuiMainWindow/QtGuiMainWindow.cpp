@@ -1,5 +1,5 @@
 #include "QtGuiMainWindow.h"
-#include <qboxlayout.h>
+
 #include <string>
 #include <QDateTime>
 
@@ -12,6 +12,9 @@ QtGuiMainWindow::QtGuiMainWindow(QWidget *parent)
 	timer->start();
 	this->initUI();
 	this->initMenuBar();
+	this->initToolBar();
+
+	setLayout(main_layout);
 	this->initSignalSlots();
 	setWindowTitle("MainWindow test");
 }
@@ -117,6 +120,15 @@ void QtGuiMainWindow::slot_action_new_1(void)
 	qDebug("new_1 trigged");
 }
 
+
+void QtGuiMainWindow::slot_toolbutton_1_open(void)
+{
+	txtEdit->setPlainText("tool button 1 trigged");
+	qDebug("tool button 1 trigged");
+}
+
+
+
 void QtGuiMainWindow::initMenuBar(void)
 {
 	mb = menuBar();
@@ -146,10 +158,23 @@ void QtGuiMainWindow::initMenuBar(void)
 
 	mb->addMenu(file_menu);
 	mb->addMenu(help_menu);
-	//action = new QAction("menu-2", NULL);
-	//menu = new QMenu("File(&F)");
-	//menu->addAction(action);
-	//mb->addMenu(menu);
+}
+
+void QtGuiMainWindow::initToolBar(void)
+{
+	toolbar = new QToolBar;
+	tool_group = new QActionGroup(this);
+	tool_1 = new QAction("open(&o)");
+	tool_2 = new QAction("tool_2(&t)");
+	tool_1->setIcon(QIcon("Resources\\open.png"));
+	toolbar_list.append(tool_1);
+	toolbar_list.append(tool_2);
+	tool_group->addAction(tool_1);
+	tool_group->addAction(tool_2);
+	toolbar->addActions(toolbar_list);
+	addToolBar(toolbar);
+
+	connect(tool_1, SIGNAL(triggered()), this, SLOT(slot_toolbutton_1_open()));
 }
 
 void QtGuiMainWindow::initUI(void)
@@ -226,14 +251,14 @@ void QtGuiMainWindow::initUI(void)
 
 
 	//创建垂直布局，并设置为主布局
-	QVBoxLayout *VLay = new QVBoxLayout(widget);
-	VLay->addLayout(LCDLayout);
-	VLay->addLayout(HLayout);
-	VLay->addLayout(HLayout2);
-	VLay->addWidget(txtEdit);
-	VLay->addLayout(HLaySlider);
-	VLay->addLayout(HLay3);
-	setLayout(VLay);
+	main_layout = new QVBoxLayout(widget);
+
+	main_layout->addLayout(LCDLayout);
+	main_layout->addLayout(HLayout);
+	main_layout->addLayout(HLayout2);
+	main_layout->addWidget(txtEdit);
+	main_layout->addLayout(HLaySlider);
+	main_layout->addLayout(HLay3);
 }
 
 void QtGuiMainWindow::initSignalSlots(void)
@@ -257,6 +282,6 @@ void QtGuiMainWindow::initSignalSlots(void)
 	connect(slider, SIGNAL(valueChanged(int)), spinBox, SLOT(setValue(int)));
 
 	connect(timer, SIGNAL(timeout()), this, SLOT(on_TimerOut()));
-	connect(multi_2, SIGNAL(triggered()), this, SLOT(slot_action_multi_1()));
+	connect(multi_1, SIGNAL(triggered()), this, SLOT(slot_action_multi_1()));
 	connect(new_action_1, SIGNAL(triggered()), this, SLOT(slot_action_new_1()));
 }
