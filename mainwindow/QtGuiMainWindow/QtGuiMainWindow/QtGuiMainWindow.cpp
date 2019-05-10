@@ -19,6 +19,11 @@ QtGuiMainWindow::QtGuiMainWindow(QWidget *parent)
 	setWindowTitle("MainWindow test");
 }
 
+QtGuiMainWindow::~QtGuiMainWindow()
+{
+
+}
+
 
 void QtGuiMainWindow::on_chkBoxUnder(bool checked)
 {
@@ -125,6 +130,11 @@ void QtGuiMainWindow::slot_toolbutton_1_open(void)
 {
 	txtEdit->setPlainText("tool button 1 trigged");
 	qDebug("tool button 1 trigged");
+	//process_open = new QProcess
+	//open_dialog = new QDialog("open file");
+
+	open_dialog = new MOpenDialog;
+	open_dialog->show();
 }
 
 

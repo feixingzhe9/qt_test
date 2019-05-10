@@ -11,6 +11,10 @@
 #include <qlcdnumber.h>
 #include <qtimer.h>
 #include <qboxlayout.h>
+#include <qprocess.h>
+#include <qdialog.h>
+
+#include <mopen_dialog.h>
 
 class QtGuiMainWindow : public QMainWindow
 {
@@ -61,6 +65,8 @@ private:
 	QSpinBox *spinBox;
 	QSlider *slider;
 
+	//QProcess *process_open;
+	MOpenDialog *open_dialog;
 
 	//layout
 	QVBoxLayout *main_layout;
@@ -92,6 +98,6 @@ private slots:
 
 public:
 	QtGuiMainWindow(QWidget *parent = Q_NULLPTR);
-	//~QtGuiSignalSlot_1();
+	~QtGuiMainWindow();
 
 };
