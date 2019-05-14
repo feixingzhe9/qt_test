@@ -13,6 +13,11 @@ QtGuiMainWindow::QtGuiMainWindow(QWidget *parent)
 	this->initUI();
 	this->initMenuBar();
 	this->initToolBar();
+	this->init_groupbox_1();
+	this->init_groupbox_2();
+	this->init_groupbox_3();
+	this->init_groupbox_4();
+	this->init_grid_layout();
 
 	setLayout(main_layout);
 	this->initSignalSlots();
@@ -187,6 +192,107 @@ void QtGuiMainWindow::initToolBar(void)
 	connect(tool_1, SIGNAL(triggered()), this, SLOT(slot_toolbutton_1_open()));
 }
 
+void QtGuiMainWindow::initProgressBar(void)
+{
+	
+}
+
+void QtGuiMainWindow::init_groupbox_1(void)
+{
+	group_box_1 = new QGroupBox(tr("group test"));
+	QRadioButton *group_box_radio_button_1 = new QRadioButton("button 1");
+	QRadioButton *group_box_radio_button_2 = new QRadioButton("button 2");
+	QRadioButton *group_box_radio_button_3 = new QRadioButton("button 3");
+	QRadioButton *group_box_radio_button_4 = new QRadioButton("button 4");
+	QRadioButton *group_box_radio_button_5 = new QRadioButton("button 5");
+	QVBoxLayout *v_layout;
+	v_layout = new QVBoxLayout;
+	v_layout->addWidget(group_box_radio_button_1);
+	v_layout->addWidget(group_box_radio_button_2);
+	v_layout->addWidget(group_box_radio_button_3);
+	v_layout->addWidget(group_box_radio_button_4);
+	v_layout->addWidget(group_box_radio_button_5);
+	group_box_1->setLayout(v_layout);
+	//main_layout->addLayout(main_layout_left);
+	main_layout->addWidget(group_box_1);
+}
+
+
+void QtGuiMainWindow::init_groupbox_2(void)
+{
+	group_box_2 = new QGroupBox(tr("group test"));
+	QRadioButton *group_box_radio_button_1 = new QRadioButton("button 1");
+	QRadioButton *group_box_radio_button_2 = new QRadioButton("button 2");
+	QRadioButton *group_box_radio_button_3 = new QRadioButton("button 3");
+	QRadioButton *group_box_radio_button_4 = new QRadioButton("button 4");
+	QRadioButton *group_box_radio_button_5 = new QRadioButton("button 5");
+	QVBoxLayout *v_layout;
+	v_layout = new QVBoxLayout;
+	v_layout->addWidget(group_box_radio_button_1);
+	v_layout->addWidget(group_box_radio_button_2);
+	v_layout->addWidget(group_box_radio_button_3);
+	v_layout->addWidget(group_box_radio_button_4);
+	v_layout->addWidget(group_box_radio_button_5);
+	group_box_2->setLayout(v_layout);
+	//main_layout->addLayout(main_layout_left);
+	main_layout->addWidget(group_box_2);
+}
+
+
+void QtGuiMainWindow::init_groupbox_3(void)
+{
+	group_box_3 = new QGroupBox(tr("group test"));
+	QRadioButton *group_box_radio_button_1 = new QRadioButton("button 1");
+	QRadioButton *group_box_radio_button_2 = new QRadioButton("button 2");
+	QRadioButton *group_box_radio_button_3 = new QRadioButton("button 3");
+	QRadioButton *group_box_radio_button_4 = new QRadioButton("button 4");
+	QRadioButton *group_box_radio_button_5 = new QRadioButton("button 5");
+	QVBoxLayout *v_layout;
+	v_layout = new QVBoxLayout;
+	v_layout->addWidget(group_box_radio_button_1);
+	v_layout->addWidget(group_box_radio_button_2);
+	v_layout->addWidget(group_box_radio_button_3);
+	v_layout->addWidget(group_box_radio_button_4);
+	v_layout->addWidget(group_box_radio_button_5);
+	group_box_3->setLayout(v_layout);
+	//main_layout->addLayout(main_layout_left);
+	main_layout->addWidget(group_box_3);
+}
+
+
+
+void QtGuiMainWindow::init_groupbox_4(void)
+{
+	group_box_4 = new QGroupBox(tr("group test"));
+	QRadioButton *group_box_radio_button_1 = new QRadioButton("button 1");
+	QRadioButton *group_box_radio_button_2 = new QRadioButton("button 2");
+	QRadioButton *group_box_radio_button_3 = new QRadioButton("button 3");
+	QRadioButton *group_box_radio_button_4 = new QRadioButton("button 4");
+	QRadioButton *group_box_radio_button_5 = new QRadioButton("button 5");
+	QVBoxLayout *v_layout;
+	v_layout = new QVBoxLayout;
+	v_layout->addWidget(group_box_radio_button_1);
+	v_layout->addWidget(group_box_radio_button_2);
+	v_layout->addWidget(group_box_radio_button_3);
+	v_layout->addWidget(group_box_radio_button_4);
+	v_layout->addWidget(group_box_radio_button_5);
+	group_box_4->setLayout(v_layout);
+	//main_layout->addLayout(main_layout_left);
+	main_layout->addWidget(group_box_4);
+}
+
+
+void QtGuiMainWindow::init_grid_layout(void)
+{
+	main_grid_layout = new QGridLayout;
+	main_grid_layout->addWidget(group_box_1, 0, 0);
+	main_grid_layout->addWidget(group_box_2, 0, 1);
+	main_grid_layout->addWidget(group_box_3, 1, 0);
+	main_grid_layout->addWidget(group_box_4, 1, 1);
+
+	main_layout->addLayout(main_grid_layout);
+}
+
 void QtGuiMainWindow::initUI(void)
 {
 	widget = new QWidget(this);
@@ -214,7 +320,20 @@ void QtGuiMainWindow::initUI(void)
 
 	//创建确定, 取消, 退出3 个 PushButton, 并水平布局
 	btnOK = new QPushButton(tr("OK"));
-	btnCancel = new QPushButton("Cancel", 0);
+	btnOK->setStyleSheet("background-color: rgb(32, 81, 202); color: white");
+	btnCancel = new QPushButton(this);
+	btnCancel->setStyleSheet("QPushButton{border-image: url(Resources/pushbutton_cancel.png);}"
+							"QPushButton:hover{border-image: url(Resources/pushbutton_cancel_hover.png);}"
+							"QPushButton:pressed{border-image:url(Resources/pushbutton_cancel_clicked.png);}"
+							"QPushButton{border:none;}");
+	//QIcon cancel_icon = QIcon("Resources/pushbutton_cancel.png");
+	//btnCancel->setIcon(cancel_icon);
+	//btnCancel->setText("cancel");
+	btnCancel->setFlat(false);
+	//btnCancel->sizeHint(48,48);
+	//btnCancel->setStyleSheet("border: none;");
+
+
 	btnClose = new QPushButton(tr("Close"));
 	btnClose->setFont(QFont("Times", 16, QFont::Bold));
 	//btnCancel->resize(200, 500);
@@ -253,6 +372,14 @@ void QtGuiMainWindow::initUI(void)
 	slider->setTickPosition(QSlider::TicksAbove);
 	slider->setOrientation(Qt::Horizontal);	//水平方向
 
+
+	//progress bar
+	progressbar = new QProgressBar(this);
+	progressbar->setOrientation(Qt::Horizontal);	//水平方向
+	progressbar->setMinimum(0);
+	progressbar->setMaximum(100);
+	progressbar->setValue(0);
+
 	QHBoxLayout *HLaySlider = new QHBoxLayout;
 	HLaySlider->addWidget(spinBox);
 	HLaySlider->addStretch();
@@ -260,15 +387,22 @@ void QtGuiMainWindow::initUI(void)
 
 
 
-	//创建垂直布局，并设置为主布局
-	main_layout = new QVBoxLayout(widget);
+	//创建垂直布局，为左侧主布局
+	main_layout_left = new QVBoxLayout;
 
-	main_layout->addLayout(LCDLayout);
-	main_layout->addLayout(HLayout);
-	main_layout->addLayout(HLayout2);
-	main_layout->addWidget(txtEdit);
-	main_layout->addLayout(HLaySlider);
-	main_layout->addLayout(HLay3);
+	main_layout_left->addLayout(LCDLayout);
+	main_layout_left->addLayout(HLayout);
+	main_layout_left->addLayout(HLayout2);
+	main_layout_left->addWidget(txtEdit);
+	main_layout_left->addLayout(HLaySlider);
+	main_layout_left->addWidget(progressbar);
+	main_layout_left->addLayout(HLay3);
+
+	main_grid_layout = new QGridLayout(this);
+
+	main_layout = new QHBoxLayout(widget);
+	main_layout->addLayout(main_layout_left);
+
 }
 
 void QtGuiMainWindow::initSignalSlots(void)
@@ -294,4 +428,6 @@ void QtGuiMainWindow::initSignalSlots(void)
 	connect(timer, SIGNAL(timeout()), this, SLOT(on_TimerOut()));
 	connect(multi_1, SIGNAL(triggered()), this, SLOT(slot_action_multi_1()));
 	connect(new_action_1, SIGNAL(triggered()), this, SLOT(slot_action_new_1()));
+	connect(spinBox, SIGNAL(valueChanged(int)), progressbar, SLOT(setValue(int)));
+	connect(slider, SIGNAL(valueChanged(int)), progressbar, SLOT(setValue(int)));
 }

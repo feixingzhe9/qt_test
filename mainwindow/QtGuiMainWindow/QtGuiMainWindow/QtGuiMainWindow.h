@@ -13,7 +13,8 @@
 #include <qboxlayout.h>
 #include <qprocess.h>
 #include <qdialog.h>
-
+#include <qprogressbar.h>
+#include <qgroupbox.h>
 #include <mopen_dialog.h>
 
 class QtGuiMainWindow : public QMainWindow
@@ -65,16 +66,34 @@ private:
 	QSpinBox *spinBox;
 	QSlider *slider;
 
+	QProgressBar *progressbar;
 	//QProcess *process_open;
 	MOpenDialog *open_dialog;
 
+
+	QGroupBox *group_box_1;
+	QGroupBox *group_box_2;
+	QGroupBox *group_box_3;
+	QGroupBox *group_box_4;
+	
+
 	//layout
-	QVBoxLayout *main_layout;
+	QVBoxLayout *main_layout_left;
+
+	QGridLayout *main_grid_layout;
+
+	QHBoxLayout *main_layout;
 
 	void initUI(void);
 	void initMenuBar(void);
 	void initToolBar(void);
 	void initSignalSlots(void);
+	void initProgressBar(void);
+	void init_groupbox_1(void);
+	void init_groupbox_2(void);
+	void init_groupbox_3(void);
+	void init_groupbox_4(void);
+	void init_grid_layout(void);
 	//void setTextFontColor(void);
 
 private slots:
