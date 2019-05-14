@@ -194,7 +194,7 @@ void QtGuiMainWindow::initToolBar(void)
 
 void QtGuiMainWindow::initProgressBar(void)
 {
-	
+
 }
 
 void QtGuiMainWindow::init_groupbox_1(void)
@@ -212,15 +212,16 @@ void QtGuiMainWindow::init_groupbox_1(void)
 	v_layout->addWidget(group_box_radio_button_3);
 	v_layout->addWidget(group_box_radio_button_4);
 	v_layout->addWidget(group_box_radio_button_5);
+	group_box_1->setStyleSheet("background-color: rgb(200, 200, 190);");
 	group_box_1->setLayout(v_layout);
-	//main_layout->addLayout(main_layout_left);
-	main_layout->addWidget(group_box_1);
+
 }
 
 
 void QtGuiMainWindow::init_groupbox_2(void)
 {
-	group_box_2 = new QGroupBox(tr("group test"));
+	group_box_2 = new QGroupBox;
+	QLabel *_label = new QLabel("label test");
 	QRadioButton *group_box_radio_button_1 = new QRadioButton("button 1");
 	QRadioButton *group_box_radio_button_2 = new QRadioButton("button 2");
 	QRadioButton *group_box_radio_button_3 = new QRadioButton("button 3");
@@ -234,14 +235,17 @@ void QtGuiMainWindow::init_groupbox_2(void)
 	v_layout->addWidget(group_box_radio_button_4);
 	v_layout->addWidget(group_box_radio_button_5);
 	group_box_2->setLayout(v_layout);
-	//main_layout->addLayout(main_layout_left);
-	main_layout->addWidget(group_box_2);
+
+	v_layout_groupbox_2 = new QVBoxLayout;
+	v_layout_groupbox_2->addWidget(_label);
+	v_layout_groupbox_2->addWidget(group_box_2);
+
 }
 
 
 void QtGuiMainWindow::init_groupbox_3(void)
 {
-	group_box_3 = new QGroupBox(tr("group test"));
+	group_box_3 = new QGroupBox;
 	QRadioButton *group_box_radio_button_1 = new QRadioButton("button 1");
 	QRadioButton *group_box_radio_button_2 = new QRadioButton("button 2");
 	QRadioButton *group_box_radio_button_3 = new QRadioButton("button 3");
@@ -254,9 +258,9 @@ void QtGuiMainWindow::init_groupbox_3(void)
 	v_layout->addWidget(group_box_radio_button_3);
 	v_layout->addWidget(group_box_radio_button_4);
 	v_layout->addWidget(group_box_radio_button_5);
+	group_box_3->setStyleSheet("QGroupBox{border: none; background-color: rgb(200,200,200);}");
 	group_box_3->setLayout(v_layout);
-	//main_layout->addLayout(main_layout_left);
-	main_layout->addWidget(group_box_3);
+
 }
 
 
@@ -277,8 +281,7 @@ void QtGuiMainWindow::init_groupbox_4(void)
 	v_layout->addWidget(group_box_radio_button_4);
 	v_layout->addWidget(group_box_radio_button_5);
 	group_box_4->setLayout(v_layout);
-	//main_layout->addLayout(main_layout_left);
-	main_layout->addWidget(group_box_4);
+
 }
 
 
@@ -286,7 +289,7 @@ void QtGuiMainWindow::init_grid_layout(void)
 {
 	main_grid_layout = new QGridLayout;
 	main_grid_layout->addWidget(group_box_1, 0, 0);
-	main_grid_layout->addWidget(group_box_2, 0, 1);
+	main_grid_layout->addLayout(v_layout_groupbox_2, 0, 1);
 	main_grid_layout->addWidget(group_box_3, 1, 0);
 	main_grid_layout->addWidget(group_box_4, 1, 1);
 
@@ -322,9 +325,12 @@ void QtGuiMainWindow::initUI(void)
 	btnOK = new QPushButton(tr("OK"));
 	btnOK->setStyleSheet("background-color: rgb(32, 81, 202); color: white");
 	btnCancel = new QPushButton(this);
+	btnCancel->setIconSize(QSize(64, 64)); // 不起作用，why?
+	btnCancel->setCheckable(true);
 	btnCancel->setStyleSheet("QPushButton{border-image: url(Resources/pushbutton_cancel.png);}"
 							"QPushButton:hover{border-image: url(Resources/pushbutton_cancel_hover.png);}"
 							"QPushButton:pressed{border-image:url(Resources/pushbutton_cancel_clicked.png);}"
+							"QPushButton:checked{border-image:url(Resources/pushbutton_cancel_clicked.png);}"
 							"QPushButton{border:none;}");
 	//QIcon cancel_icon = QIcon("Resources/pushbutton_cancel.png");
 	//btnCancel->setIcon(cancel_icon);
@@ -371,6 +377,10 @@ void QtGuiMainWindow::initUI(void)
 	slider->setTickInterval(5);
 	slider->setTickPosition(QSlider::TicksAbove);
 	slider->setOrientation(Qt::Horizontal);	//水平方向
+	slider->setStyleSheet("QSlider::groove:horizontal{border: 1px solid #999999; height: 10px; margin: 0px 0; left:5px; right:5px; }"
+						"QSlider::handle:horizontal{border: 0px; border-image: url(Resources/pushbutton_cancel.png); width: 15px; margin: -7px -7px -7px -7px;}"
+						"QSlider::add-page:horizontal{background:qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 #bcbcbc, stop:0.25 #bcbcbc, stop:0.5 #bcbcbc, stop:1 #bcbcbc);}"
+						"QSlider::sub-page:horizontal{background: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 #439cf3, stop:0.25 #439cf3, stop:1 #439cf3);}");
 
 
 	//progress bar

@@ -15,6 +15,7 @@
 #include <qdialog.h>
 #include <qprogressbar.h>
 #include <qgroupbox.h>
+#include <qlabel.h>
 #include <mopen_dialog.h>
 
 class QtGuiMainWindow : public QMainWindow
@@ -77,6 +78,7 @@ private:
 	QGroupBox *group_box_4;
 	
 
+	QVBoxLayout *v_layout_groupbox_2;
 	//layout
 	QVBoxLayout *main_layout_left;
 
